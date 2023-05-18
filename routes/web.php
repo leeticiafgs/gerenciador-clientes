@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\ClienteController;
 use Illuminate\Support\Facades\Route;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -25,4 +27,31 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+// // Listar todos os clientes
+Route::get('/clientes', [ClienteController::class, 'index']);
+
+// Exibir formulário para criar um novo cliente
+Route::get('/clientes/criar', [ClienteController::class, 'create']);
+
+// Salvar novo cliente no banco de dados
+Route::post('/clientes', [ClienteController::class, 'store']);
+
+// // Exibir informações de um cliente específico
+// Route::get('/clientes/{id}', 'ClienteController@show')->name('clientes.show');
+
+// // Exibir formulário para editar um cliente
+// Route::get('/clientes/{id}/editar', 'ClienteController@edit')->name('clientes.edit');
+
+// // Atualizar dados de um cliente no banco de dados
+// Route::put('/clientes/{id}', 'ClienteController@update')->name('clientes.update');
+
+// // Excluir um cliente do banco de dados
+// Route::delete('/clientes/{id}', 'ClienteController@destroy')->name('clientes.destroy');
+
+
+
 });
+
+
+
