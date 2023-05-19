@@ -77,13 +77,13 @@ class ClienteController extends Controller
     //     return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
     // }
 
-    // public function destroy($id)
-    // {
-    //     // Excluir um cliente do banco de dados
-    //     $cliente = Cliente::findOrFail($id);
-    //     $cliente->delete();
+    public function destroy($id)
+    {
+        // Excluir um cliente do banco de dados
+        $cliente = Cliente::findOrFail($id);
+        $cliente->delete();
 
-    //     // Redirecionamento para a página de listagem de clientes
-    //     return redirect()->route('clientes.index')->with('success', 'Cliente excluído com sucesso!');
-    // }
+        // Redirecionamento para a página de listagem de clientes
+        return redirect('/clientes')->with('success', 'Cliente excluido com sucesso!');
+    }
 }

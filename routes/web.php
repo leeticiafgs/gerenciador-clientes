@@ -46,10 +46,8 @@ Route::post('/clientes', [ClienteController::class, 'store']);
 // // Atualizar dados de um cliente no banco de dados
 // Route::put('/clientes/{id}', 'ClienteController@update')->name('clientes.update');
 
-// // Excluir um cliente do banco de dados
-// Route::delete('/clientes/{id}', 'ClienteController@destroy')->name('clientes.destroy');
-
-
+// Excluir um cliente do banco de dados
+Route::delete('/clientes/{id}', [ClienteController::class, 'destroy']);
 
 });
 
