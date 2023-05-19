@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Novo Cliente</title>
+    <title>Editar Cliente</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
 </head>
 <body>
@@ -12,31 +12,33 @@
     
     <div class="container">
 
-        <h1>Novo Cliente</h1>
+        <h1>Editar Cliente: {{$cliente->nome}}</h1>
         <hr>
-        <form action="/clientes" method="POST">
+        <form action="/clientes/{{$cliente->id}}" method="post">
             @csrf  {{-- Prevenção do laravel de ataques a formularios --}}
+            @method('PUT')
+            <br>
             <div class="form-group">
                 <label for="nome">Nome Completo</label>
-                <input name="nome" type="nome" class="form-control" id="nome" placeholder="Nome">
+                <input name="nome" type="nome" class="form-control" id="nome" value="{{$cliente->nome}}">
             </div>
             
             <div class="form-group">
             <label for="email">Email</label>
-            <input type="email" name="email" class="form-control" id="email" placeholder="seunome@email.com">
+            <input type="email" name="email" class="form-control" id="email" value="{{$cliente->email}}"> 
             </div>
 
             <div class="form-group">
                 <label for="data_nascimento">Data de Nascimento</label>
-                <input type="date" name="data_nascimento" class="form-control" id="data_nascimento" placeholder="00/00/0000">
+                <input type="date" name="data_nascimento" class="form-control" id="data_nascimento" value="{{$cliente->data_nascimento}}">
             </div>
 
             <div class="form-group">
                 <label for="telefone">Telefone</label>
-                <input type="telefone" name="telefone" class="form-control" id="telefone" placeholder="(37) 00000-0000">
+                <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{$cliente->telefone}}">
             </div>
 
-            <button type="submit" class="btn btn-primary">Cadastrar</button>
+            <button type="submit" class="btn btn-primary">Alterar Cadastro</button>
         </form>
     </div>
 </body>

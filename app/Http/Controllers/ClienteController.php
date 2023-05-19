@@ -51,31 +51,36 @@ class ClienteController extends Controller
     //     return view('clientes.show', ['cliente' => $cliente]);
     // }
 
-    // public function edit($id)
-    // {
-    //     // Obter informações de um cliente específico do banco de dados
-    //     $cliente = Cliente::findOrFail($id);
+    public function edit($id)
+    {
 
-    //     // Exibir formulário para editar o cliente
-    //     return view('clientes.edit', ['cliente' => $cliente]);
-    // }
+        $user = auth()->user(); // Obtém o ID do usuário atualmente autenticado        
+        $cliente = Cliente::findOrFail($id); // Obter informações de um cliente específico do banco de dados
 
-    // public function update(Request $request, $id)
-    // {
-    //     // Validação dos dados do formulário
-    //     $request->validate([
-    //         'nome' => 'required',
-    //         'email' => 'required|email',
-    //         // Outras regras de validação
-    //     ]);
+        if($user->id != $cliente->user_id){
+            return redirect('/clientes')->with('error', 'Você não tem autorização para editar este cliente!');
+        }
 
-    //     // Atualização dos dados do cliente no banco de dados
-    //     $cliente = Cliente::findOrFail($id);
-    //     $cliente->update($request->all());
+        // Exibir formulário para editar o cliente
+        return view('clientes.edit', ['cliente' => $cliente]);
+    }
 
-    //     // Redirecionamento para a página de listagem de clientes
-    //     return redirect()->route('clientes.index')->with('success', 'Cliente atualizado com sucesso!');
-    // }
+    public function update(Request $request, $id)
+    {
+        // // Validação dos dados do formulário
+        // $request->validate([
+        //     'nome' => 'required',
+        //     'email' => 'required|email',
+        //     // Outras regras de validação
+        // ]);
+
+        // Atualização dos dados do cliente no banco de dados
+        $cliente = Cliente::findOrFail($id);
+        $cliente->update($request->all());
+
+        // Redirecionamento para a página de listagem de clientes
+        return redirect('/clientes')->with('success', 'Os dados do cliente foram atualizados com sucesso!');
+    }
 
     public function destroy($id)
     {

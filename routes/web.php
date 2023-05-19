@@ -40,11 +40,11 @@ Route::post('/clientes', [ClienteController::class, 'store']);
 // // Exibir informações de um cliente específico
 // Route::get('/clientes/{id}', 'ClienteController@show')->name('clientes.show');
 
-// // Exibir formulário para editar um cliente
-// Route::get('/clientes/{id}/editar', 'ClienteController@edit')->name('clientes.edit');
+// Exibir formulário para editar um cliente
+Route::get('/clientes/edit/{id}', [ClienteController::class, 'edit']);
 
 // // Atualizar dados de um cliente no banco de dados
-// Route::put('/clientes/{id}', 'ClienteController@update')->name('clientes.update');
+Route::put('/clientes/{id}', [ClienteController::class, 'update']);
 
 // Excluir um cliente do banco de dados
 Route::delete('/clientes/{id}', [ClienteController::class, 'destroy']);
