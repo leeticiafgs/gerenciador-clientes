@@ -29,7 +29,7 @@ class ClienteController extends Controller
     public function store(Request $request)
     {
        
-        $cliente = new Cliente;
+        $cliente = new Cliente; //Instancia novo cliente e recebe os dados do request abaixo
 
         $cliente->nome = $request->nome;
         $cliente->data_nascimento = $request->data_nascimento;
@@ -37,19 +37,19 @@ class ClienteController extends Controller
         $cliente->telefone = $request->telefone;
         $cliente->user_id = auth()->id(); // Atribui o ID do usuário autenticado ao cliente
   
-         $cliente->save();
+         $cliente->save(); // Salva no BD
 
         return redirect('/clientes')->with('success', 'Cliente criado com sucesso!');
     }
 
-    // public function show($id)
-    // {
-    //     // Obter informações de um cliente específico do banco de dados
-    //     $cliente = Cliente::findOrFail($id);
+    public function show($id)
+    {
+        // Obter informações de um cliente específico do banco de dados
+        $cliente = Cliente::findOrFail($id);
 
-    //     // Retornar a view com as informações do cliente
-    //     return view('clientes.show', ['cliente' => $cliente]);
-    // }
+        // Retornar a view com as informações do cliente
+        return view('clientes.show', ['cliente' => $cliente]);
+    }
 
     public function edit($id)
     {
@@ -67,12 +67,14 @@ class ClienteController extends Controller
 
     public function update(Request $request, $id)
     {
-        // // Validação dos dados do formulário
-        // $request->validate([
-        //     'nome' => 'required',
-        //     'email' => 'required|email',
-        //     // Outras regras de validação
-        // ]);
+        // Validação dos dados do formulário
+        $request->validate([
+            'nome' => 'required',
+            'email' => 'required|email',
+            'data_nascimento' => 'required|date',
+            'telefone' => 'required',
+            
+        ]);
 
         // Atualização dos dados do cliente no banco de dados
         $cliente = Cliente::findOrFail($id);

@@ -18,7 +18,6 @@
         @endif
 
         <h1>Meus Clientes</h1>
-        <hr>
 
         @if(count($clientes)>0)
         <div>

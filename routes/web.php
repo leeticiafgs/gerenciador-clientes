@@ -37,8 +37,8 @@ Route::get('/clientes/criar', [ClienteController::class, 'create']);
 // Salvar novo cliente no banco de dados
 Route::post('/clientes', [ClienteController::class, 'store']);
 
-// // Exibir informações de um cliente específico
-// Route::get('/clientes/{id}', 'ClienteController@show')->name('clientes.show');
+// Exibir informações de um cliente específico
+Route::get('/clientes/detalhar/{id}', [ClienteController::class, 'show']);
 
 // Exibir formulário para editar um cliente
 Route::get('/clientes/edit/{id}', [ClienteController::class, 'edit']);
