@@ -91,6 +91,14 @@ class ClienteController extends Controller
         $cliente->delete();
 
         // Redirecionamento para a página de listagem de clientes
-        return redirect('/clientes')->with('success', 'Cliente excluido com sucesso!');
+        return redirect('/clientes')->with('success', 'Cliente excluído com sucesso!');
+    }
+
+    public function nomearUser(){
+        if (Auth::check()) {
+            $nomeUsuario = Auth::user()->name;
+            dd($nomeUsuario);
+            return view('layouts.topbar', ['nomeUsuario' => $nomeUsuario]);
+        } 
     }
 }
