@@ -113,7 +113,7 @@
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
                     <input type="telefone" name="telefone" class="form-control" id="telefone"
-                        placeholder="(37) 00000-0000"required>
+                        placeholder="(00) 00000-0000" oninput="mascaraTelefone(this)" required>
                 </div>
 
                 <div style="float:right; margin-top: 30px">
@@ -137,6 +137,12 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    {{-- Validador Telefone --}}
+
+    <script src="/js/functions.js"></script>
+    
+
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

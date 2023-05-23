@@ -113,7 +113,7 @@
     
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
-                    <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{$cliente->telefone}}" required>
+                    <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{$cliente->telefone}}" oninput="mascaraTelefone(this)" required>
                 </div>
     
                 <div style="float:right; margin-top: 30px">
@@ -139,6 +139,11 @@
 
     <!-- Custom scripts for all pages-->
     <script src="/js/sb-admin-2.min.js"></script>
+
+    {{-- Validador Telefone --}}
+
+    <script src="/js/functions.js"></script>
+    
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
