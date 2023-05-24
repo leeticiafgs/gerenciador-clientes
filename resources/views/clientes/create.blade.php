@@ -25,7 +25,7 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-users"></i>
                 </div>
@@ -96,6 +96,12 @@
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
                     <input name="nome" type="nome" class="form-control" id="nome" placeholder="Nome" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="endereco">Endereço (Rua/Número/Bairro)</label>
+                    <input type="endereco" name="endereco" class="form-control" id="endereco"
+                        placeholder="Endereço"required>
                 </div>
 
                 <div class="form-group">

@@ -28,16 +28,17 @@ class ClienteController extends Controller
 
     public function store(Request $request)
     {
-       
+
         $cliente = new Cliente; //Instancia novo cliente e recebe os dados do request abaixo
 
         $cliente->nome = $request->nome;
         $cliente->data_nascimento = $request->data_nascimento;
+        $cliente->endereco = $request->endereco;
         $cliente->email = $request->email;
         $cliente->telefone = $request->telefone;
         $cliente->user_id = auth()->id(); // Atribui o ID do usuário autenticado ao cliente
-  
-         $cliente->save(); // Salva no BD
+
+        $cliente->save(); // Salva no BD
 
         return redirect('/clientes')->with('success', 'Cliente criado com sucesso!');
     }
@@ -57,7 +58,7 @@ class ClienteController extends Controller
         $user = auth()->user(); // Obtém o ID do usuário atualmente autenticado        
         $cliente = Cliente::findOrFail($id); // Obter informações de um cliente específico do banco de dados
 
-        if($user->id != $cliente->user_id){
+        if ($user->id != $cliente->user_id) {
             return redirect('/clientes')->with('error', 'Você não tem autorização para editar este cliente!');
         }
 
@@ -73,12 +74,19 @@ class ClienteController extends Controller
             'email' => 'required|email',
             'data_nascimento' => 'required|date',
             'telefone' => 'required',
-            
-        ]);
+            'endereco' => 'required'
 
+        ]);
         // Atualização dos dados do cliente no banco de dados
         $cliente = Cliente::findOrFail($id);
-        $cliente->update($request->all());
+
+        $cliente->nome = $request->nome;
+        $cliente->data_nascimento = $request->data_nascimento;
+        $cliente->endereco = $request->endereco;
+        $cliente->email = $request->email;
+        $cliente->telefone = $request->telefone;
+
+        $cliente->save();
 
         // Redirecionamento para a página de listagem de clientes
         return redirect('/clientes')->with('success', 'Os dados do cliente foram atualizados com sucesso!');
@@ -94,11 +102,12 @@ class ClienteController extends Controller
         return redirect('/clientes')->with('success', 'Cliente excluído com sucesso!');
     }
 
-    public function nomearUser(){
+    public function nomearUser()
+    {
         if (Auth::check()) {
             $nomeUsuario = Auth::user()->name;
             dd($nomeUsuario);
             return view('layouts.topbar', ['nomeUsuario' => $nomeUsuario]);
-        } 
+        }
     }
 }

@@ -13,6 +13,7 @@ class Cliente extends Model
         'nome',
         'email',
         'telefone',
+        'endereço'
     ];
 
     protected $dates = ['data_nascimento'];

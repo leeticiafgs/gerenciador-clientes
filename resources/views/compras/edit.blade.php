@@ -29,7 +29,8 @@
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-users"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3" style="font-family: 'Nunito'">Gestão Clientes
+                <div class="sidebar-brand-text mx-3"
+                    style="font-family: 'Nunito'">Gestão Clientes
                 </div>
             </a>
 
@@ -89,42 +90,32 @@
 
             <br>
 
-            <h1>Editar Cliente: {{ $cliente->nome }}</h1>
+            <h1>Editar Cliente: {{$cliente->nome}}</h1>
             <hr>
-            <form action="/clientes/{{ $cliente->id }}" method="post">
-                @csrf {{-- Prevenção do laravel de ataques a formularios --}}
+            <form action="/clientes/{{$cliente->id}}" method="post">
+                @csrf  {{-- Prevenção do laravel de ataques a formularios --}}
                 @method('PUT')
                 <br>
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
-                    <input name="nome" type="nome" class="form-control" id="nome"
-                        value="{{ $cliente->nome }}" required>
+                    <input name="nome" type="nome" class="form-control" id="nome" value="{{$cliente->nome}}" required>
                 </div>
-
+                
                 <div class="form-group">
-                    <label for="endereco">Endereço (Rua/Número/Bairro)</label>
-                    <input type="endereco" name="endereco" class="form-control" id="endereco"
-                    value="{{ $cliente->endereco }} " required>
+                <label for="email">Email</label>
+                <input type="email" name="email" class="form-control" id="email" value="{{$cliente->email}}" required> 
                 </div>
-
-                <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email"
-                        value="{{ $cliente->email }}" required>
-                </div>
-
+    
                 <div class="form-group">
                     <label for="data_nascimento">Data de Nascimento</label>
-                    <input type="date" name="data_nascimento" class="form-control" id="data_nascimento"
-                        value="{{ $cliente->data_nascimento }}" required>
+                    <input type="date" name="data_nascimento" class="form-control" id="data_nascimento" value="{{$cliente->data_nascimento}}" required>
                 </div>
-
+    
                 <div class="form-group">
                     <label for="telefone">Telefone</label>
-                    <input type="telefone" name="telefone" class="form-control" id="telefone"
-                        value="{{ $cliente->telefone }}" oninput="mascaraTelefone(this)" required>
+                    <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{$cliente->telefone}}" oninput="mascaraTelefone(this)" required>
                 </div>
-
+    
                 <div style="float:right; margin-top: 30px">
 
                     <a href="/clientes" class="btn btn-primary">
@@ -136,7 +127,7 @@
                 </div>
             </form>
         </div>
-
+    
     </div>
 
     <!-- Bootstrap core JavaScript-->
@@ -152,7 +143,7 @@
     {{-- Validador Telefone --}}
 
     <script src="/js/functions.js"></script>
-
+    
 </body>
 
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"

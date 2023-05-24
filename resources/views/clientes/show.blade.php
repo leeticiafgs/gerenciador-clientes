@@ -25,12 +25,11 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/dashboard">
                 <div class="sidebar-brand-icon rotate-n-15">
                     <i class="fas fa-users"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3"
-                    style="font-family: 'Nunito'">Gestão Clientes
+                <div class="sidebar-brand-text mx-3" style="font-family: 'Nunito'">Gestão Clientes
                 </div>
             </a>
 
@@ -88,31 +87,41 @@
 
         <div class="container">
             <br>
-            <h1>Detalhes Cliente: {{$cliente->nome}}</h1>
+            <h1>Detalhes Cliente: {{ $cliente->nome }}</h1>
             <hr>
             <form action="#" method="post">
-                @csrf  {{-- Prevenção do laravel de ataques a formularios --}}
+                @csrf {{-- Prevenção do laravel de ataques a formularios --}}
                 @method('PUT')
                 <br>
                 <div class="container">
                     <div class="form-group">
                         <label for="nome">Nome Completo</label>
-                        <input name="nome" type="nome" class="form-control" id="nome" value="{{$cliente->nome}}" disabled>
+                        <input name="nome" type="nome" class="form-control" id="nome"
+                            value="{{ $cliente->nome }}" disabled>
                     </div>
-                    
+
                     <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email" value="{{$cliente->email}}" disabled> 
+                        <label for="endereco">Endereco</label>
+                        <input type="endereco" name="endereco" class="form-control" id="endereco"
+                            value="{{ $cliente->endereco }}" disabled>
                     </div>
-    
+
+                    <div class="form-group">
+                        <label for="email">Email</label>
+                        <input type="email" name="email" class="form-control" id="email"
+                            value="{{ $cliente->email }}" disabled>
+                    </div>
+
                     <div class="form-group">
                         <label for="data_nascimento">Data de Nascimento</label>
-                        <input type="date" name="data_nascimento" class="form-control" id="data_nascimento" value="{{$cliente->data_nascimento}}" disabled>
+                        <input type="date" name="data_nascimento" class="form-control" id="data_nascimento"
+                            value="{{ $cliente->data_nascimento }}" disabled>
                     </div>
-    
+
                     <div class="form-group">
                         <label for="telefone">Telefone</label>
-                        <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{$cliente->telefone}}" disabled>
+                        <input type="telefone" name="telefone" class="form-control" id="telefone"
+                            value="{{ $cliente->telefone }}" disabled>
                     </div>
 
                     <div style="float:right; margin-top: 30px">
@@ -126,8 +135,8 @@
                 </div>
             </form>
         </div>
-    
-    
+
+
     </div>
 
     <!-- Bootstrap core JavaScript-->

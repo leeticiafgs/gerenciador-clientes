@@ -31,7 +31,7 @@
         <!-- Navigation-->
         <nav class="navbar navbar-expand-lg navbar-light fixed-top shadow-sm" id="mainNav">
             <div class="container px-5">
-                <a class="navbar-brand fw-bold" href="#page-top">Gestão Clientes</a>
+                <a class="navbar-brand fw-bold" href="/welcome">Gestão Clientes</a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false"
                     aria-label="Toggle navigation">
@@ -58,7 +58,7 @@
                     <div class="col-lg-6">
                         <!-- Mashead text and app badges-->
                         <div class="mb-5 mb-lg-0 text-center text-lg-start">
-                            <h1 class="display-1 lh-1 mb-3" style="color: #000000">Cuide do cadastro de seus clientes.
+                            <h1 class="display-1 lh-1 mb-3" style="color: #000000;"><b> Cuide do cadastro de seus clientes.</b>
                             </h1>
                             <p class="lead fw-normal text-muted mb-5">Te ajudamos a fazer a gestão de clientes do seu
                                 negócio!
