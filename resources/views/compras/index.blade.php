@@ -99,37 +99,39 @@
 
             <br>
 
-            <h1>Meus Clientes</h1>
+            <h1>Compras Clientes</h1>
 
-            @if (count($clientes) > 0)
+            @if (count($compras) > 0)
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
                                 <th scope="col">Nome</th>
-                                <th scope="col">Telefone</th>
+                                <th scope="col">Data</th>
+                                <th scope="col">Valor</th>
                                 <th scope="col">Ações</th>
                             </tr>
                         </thead>
 
                         <tbody>
-                            @foreach ($clientes as $cliente)
+                            @foreach ($compras as $compra)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
-                                    <td><a href="/clientes/detalhar/{{ $cliente->id }}">{{ $cliente->nome }}</a></td>
-                                    <td>{{ $cliente->telefone }}</td>
+                                    <td><a href="#">{{ $compra->descricao }}</a></td>
+                                    <td>{{ $compra->data_compra }}</td>
+                                    <td>{{ $compra->valor }}</td>
                                     <td>
 
                                         <div class="btn-group">
-                                            <a href="/clientes/detalhar/{{ $cliente->id }}"
+                                            <a href="#"
                                                 class="btn btn-primary btn-sm">
                                                 <ion-icon name="eye-outline"></ion-icon> Ver Cadastro
                                             </a>
-                                            <a href="/clientes/edit/{{ $cliente->id }}" class="btn btn-success btn-sm">
+                                            <a href="#" class="btn btn-success btn-sm">
                                                 <ion-icon name="create-outline"></ion-icon> Editar
                                             </a>
-                                            <form action="/clientes/{{ $cliente->id }}" method="POST">
+                                            <form action="#" method="POST">
                                                 @csrf
                                                 @method('DELETE')
                                                 <button type="submit" class="btn btn-danger btn-sm">
@@ -143,7 +145,7 @@
                     </table>
                 </div>
             @else
-                <p>Você ainda não possui clientes, <a href="/clientes/criar"> <b>Cadastrar Cliente</b></a></p>
+                <p>Ainda não existem compras lançadas, <a href="/compras/criar"> <b>Cadastrar Compra</b></a></p>
             @endif
         </div>
 

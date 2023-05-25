@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\ClienteController;
+use App\Http\Controllers\CompraController;
 use Illuminate\Support\Facades\Route;
 
 

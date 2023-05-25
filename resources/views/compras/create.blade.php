@@ -89,32 +89,44 @@
         <div class="container">
             <br>
 
-            <h1>Novo Cliente</h1>
+            <h1>Nova Compra</h1>
             <hr>
-            <form action="/clientes" method="POST">
+            <form action="/compras" method="POST">
                 @csrf {{-- Prevenção do laravel de ataques a formularios --}}
+
                 <div class="form-group">
-                    <label for="nome">Nome Completo</label>
-                    <input name="nome" type="nome" class="form-control" id="nome" placeholder="Nome" required>
+                    <label for="data_compra"><b> Cliente</b></label>
+                    <select name="cliente_id" id="cliente_id" class="form-control">
+                        <option value="">Selecione um cliente</option>
+                        @foreach($clientes as $cliente)
+                            <option value="{{ $cliente->id }}">{{ $cliente->nome }}</option>
+                        @endforeach
+                    </select>
                 </div>
 
                 <div class="form-group">
-                    <label for="email">Email</label>
-                    <input type="email" name="email" class="form-control" id="email"
-                        placeholder="seunome@email.com"required>
-                </div>
-
-                <div class="form-group">
-                    <label for="data_nascimento">Data de Nascimento</label>
-                    <input type="date" name="data_nascimento" class="form-control" id="data_nascimento"
+                    <label for="data_compra"><b> Data da Compra</b></label>
+                    <input type="date" name="data_compra" class="form-control" id="data_compra"
                         placeholder="00/00/0000"required>
                 </div>
 
                 <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="telefone" name="telefone" class="form-control" id="telefone"
-                        placeholder="(00) 00000-0000" oninput="mascaraTelefone(this)" required>
+                    <label for="descricao"><b> Descrição</b></label>
+                    <textarea type="text" name="descricao" class="form-control" id="descricao"
+                        placeholder="Descrição da Compra" required></textarea>
                 </div>
+
+
+                <div class="form-group">
+                    <label for="valor"><b> Valor da Compra</b></label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">R$</div>
+                      </div>
+                      <input type="number" name="valor" class="form-control" id="valor" step="0.01" min="0.01" required>
+                    </div>
+                  </div>
+                  
 
                 <div style="float:right; margin-top: 30px">
                     <a href="/clientes" class="btn btn-primary">

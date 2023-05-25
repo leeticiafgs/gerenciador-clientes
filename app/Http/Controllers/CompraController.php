@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use App\Models\Compra;
+use App\Models\Cliente;
 
 class CompraController extends Controller
 {
@@ -15,26 +17,25 @@ class CompraController extends Controller
 
     public function create()
     {
-        return view('compras.create');
+
+        $userId = Auth::id(); // Obtém o ID do usuário atualmente autenticado
+        $clientes = Cliente::where('user_id', $userId)->get(); // Obtém os clientes com base no ID do usuário
+        return view('compras.create', compact('clientes'));
     }
 
     public function store(Request $request)
     {
-        // Validação dos dados recebidos do formulário
-        $validatedData = $request->validate([
-            'produto' => 'required',
-            'quantidade' => 'required|numeric',
-            // Outros campos necessários para a compra
-        ]);
+        $compra = new Compra; //Instancia novo cliente e recebe os dados do request abaixo
 
-        // Criação de uma nova compra
-        $compra = new Compra;
-        $compra->produto = $request->produto;
-        $compra->quantidade = $request->quantidade;
-        // Preencha outros campos necessários para a compra
-        $compra->save();
 
-        return redirect()->route('compras.index')->with('success', 'Compra criada com sucesso!');
+        $compra->cliente_id = $request->cliente_id;
+        $compra->data_compra = $request->data_compra;
+        $compra->descricao = $request->descricao;
+        $compra->valor = $request->valor;    
+
+        $compra->save(); // Salva no BD
+
+        return redirect('/compras')->with('success', 'Compra incluida com sucesso!');
     }
 
     public function show($id)
