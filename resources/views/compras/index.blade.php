@@ -89,7 +89,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/compras">
                     <i class="fas fa-layer-group fa-sm"></i>
-                    <span>Gestão Compras</span></a>
+                    <span>Gerenciar Compras</span></a>
             </li>
     
     
@@ -120,6 +120,7 @@
                         <thead>
                             <tr>
                                 <th scope="col">#</th>
+                                <th scope="col">Código</th>
                                 <th scope="col">Cliente</th>
                                 <th scope="col">Data</th>
                                 <th scope="col">Valor</th>
@@ -131,7 +132,8 @@
                             @foreach ($compras as $compra)
                                 <tr>
                                     <td scope="row">{{ $loop->index + 1 }}</td>
-                                    <td>{{ $compra->descricao }}</td>
+                                    <td>{{ $compra->id }}</td>
+                                    <td>{{ $compra->id }}</td>
                                     <td>{{ $compra->data_compra }}</td>
                                     <td>{{ $compra->valor }}</td>
                                     <td>

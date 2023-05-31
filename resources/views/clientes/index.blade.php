@@ -89,7 +89,7 @@
             <li class="nav-item">
                 <a class="nav-link" href="/compras">
                     <i class="fas fa-layer-group fa-sm"></i>
-                    <span>Gestão Compras</span></a>
+                    <span>Gerenciar Compras</span></a>
             </li>
     
     
