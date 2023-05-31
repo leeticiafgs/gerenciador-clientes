@@ -12,7 +12,9 @@ class CompraController extends Controller
     public function index()
     {
         $compras = Compra::all();
-        return view('compras.index', compact('compras'));
+        $clientes = Cliente::all();
+        
+        return view('compras.index', compact('compras', 'clientes'));
     }
 
     public function create()
@@ -40,33 +42,45 @@ class CompraController extends Controller
 
     public function show($id)
     {
+        // Busca compra pelo ID
         $compra = Compra::findOrFail($id);
-        return view('compras.show', compact('compra'));
+
+        $user_id_compra = $compra->cliente_id;
+
+        // Busca usuario que fez a compra
+        $cliente = Cliente::where('id', $user_id_compra)->first(); // Obtém os clientes com base no ID do usuário
+        
+        return view('compras.show', compact('compra', 'cliente'));
     }
 
     public function edit($id)
     {
+        //obtem dados da compra
         $compra = Compra::findOrFail($id);
-        return view('compras.edit', compact('compra'));
+
+        //obtem dados do cliente
+        $userId = Auth::id(); // Obtém o ID do usuário atualmente autenticado
+        $cliente = Cliente::where('user_id', $userId)->first(); // Obtém os clientes com base no ID do usuário
+       
+       
+        return view('compras.edit', compact('compra', 'cliente'));
     }
 
     public function update(Request $request, $id)
     {
-        // Validação dos dados recebidos do formulário
-        $validatedData = $request->validate([
-            'produto' => 'required',
-            'quantidade' => 'required|numeric',
-            // Outros campos necessários para a compra
-        ]);
 
-        // Atualização dos dados da compra existente
+        // Atualização dos dados do cliente no banco de dados
         $compra = Compra::findOrFail($id);
-        $compra->produto = $request->produto;
-        $compra->quantidade = $request->quantidade;
-        // Atualize outros campos necessários para a compra
+
+        $compra->cliente_id = $request->cliente_id;
+        $compra->data_compra = $request->data_compra;
+        $compra->descricao = $request->descricao;
+        $compra->valor = $request->valor;    
+
         $compra->save();
 
-        return redirect()->route('compras.index')->with('success', 'Compra atualizada com sucesso!');
+        // Redirecionamento para a página de listagem de clientes
+        return redirect('/compras')->with('success', 'Os dados da compra foram atualizados com sucesso!');
     }
 
     public function destroy($id)
@@ -74,6 +88,6 @@ class CompraController extends Controller
         $compra = Compra::findOrFail($id);
         $compra->delete();
 
-        return redirect()->route('compras.index')->with('success', 'Compra excluída com sucesso!');
+        return redirect('/compras')->with('success', 'Compra excluida com sucesso!');
     }
 }

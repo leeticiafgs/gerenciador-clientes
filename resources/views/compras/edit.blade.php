@@ -30,99 +30,121 @@
                     <i class="fas fa-users"></i>
                 </div>
                 <div class="sidebar-brand-text mx-3"
-                    style="font-family: 'Nunito'">Gestão Clientes
-                </div>
+                style="font-family: 'Nunito'">Gestão Clientes
+            </div>
             </a>
-
+    
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
-
+    
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
                 <a class="nav-link" href="/dashboard">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Início</span></a>
             </li>
-
+    
             <!-- Divider -->
             <hr class="sidebar-divider">
-
+    
             <!-- Heading -->
             <div class="sidebar-heading">
-                Acesso Rápido
+                Inclusão
             </div>
-
+    
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="/clientes/criar">
                     <i class="fas fa-fw fa-user-plus"></i>
-                    <span>Novo Cliente</span></a>
+                    <span>Cliente</span></a>
             </li>
-
+    
+            <!-- Nav Item - Utilities Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link" href="/compras/criar">
+                    <i class="fas fa-dollar-sign fa-sm"></i>
+                    <span>Compra</span></a>
+            </li>
+    
+            <!-- Divider -->
+            <hr class="sidebar-divider">
+    
+            <!-- Heading -->
+                <div class="sidebar-heading">
+                Gestão
+            </div>
+    
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
                 <a class="nav-link" href="/clientes">
-                    <i class="fas fa-search fa-sm"></i>
-                    <span>Consultar Clientes</span></a>
+                    <i class="fas fa-pen fa-sm"></i>
+                    <span>Gerenciar Clientes</span></a>
             </li>
-
+    
             <!-- Nav Item - Utilities Collapse Menu -->
             <li class="nav-item">
-                <a class="nav-link" href="#">
-                    <i class="fas fa-fw fa-pen"></i>
-                    <span>Alterar Cadastro</span></a>
+                <a class="nav-link" href="/compras">
+                    <i class="fas fa-layer-group fa-sm"></i>
+                    <span>Gestão Compras</span></a>
             </li>
-
-            <!-- Divider -->
-            <hr class="sidebar-divider">
-
-
-
+    
+    
+    
             <!-- Sidebar Toggler (Sidebar) -->
             <div class="text-center d-none d-md-inline">
                 <button class="rounded-circle border-0" id="sidebarToggle"></button>
             </div>
-
+    
         </ul>
         {{-- Sidebar Fim --}}
 
         <div class="container">
-
             <br>
 
-            <h1>Editar Cliente: {{$cliente->nome}}</h1>
+            <h1>Editar compra: {{ $compra->id }}</h1>
             <hr>
-            <form action="/clientes/{{$cliente->id}}" method="post">
-                @csrf  {{-- Prevenção do laravel de ataques a formularios --}}
+            <form action="/compras/{{ $compra->id }}" method="post">
+                @csrf {{-- Prevenção do laravel de ataques a formularios --}}
                 @method('PUT')
-                <br>
+
+                <input type="hidden" name="cliente_id" value="{{ $cliente->id}}">
+
                 <div class="form-group">
                     <label for="nome">Nome Completo</label>
-                    <input name="nome" type="nome" class="form-control" id="nome" value="{{$cliente->nome}}" required>
+                    <input name="nome" type="nome" class="form-control" id="nome"
+                        value="{{ $cliente->nome}}" disabled>
                 </div>
-                
-                <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" name="email" class="form-control" id="email" value="{{$cliente->email}}" required> 
-                </div>
-    
-                <div class="form-group">
-                    <label for="data_nascimento">Data de Nascimento</label>
-                    <input type="date" name="data_nascimento" class="form-control" id="data_nascimento" value="{{$cliente->data_nascimento}}" required>
-                </div>
-    
-                <div class="form-group">
-                    <label for="telefone">Telefone</label>
-                    <input type="telefone" name="telefone" class="form-control" id="telefone" value="{{$cliente->telefone}}" oninput="mascaraTelefone(this)" required>
-                </div>
-    
-                <div style="float:right; margin-top: 30px">
 
-                    <a href="/clientes" class="btn btn-primary">
+                <div class="form-group">
+                    <label for="data_compra"><b> Data da Compra</b></label>
+                    <input type="date" name="data_compra" class="form-control" id="data_compra"
+                        value="{{$compra->data_compra}}" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="descricao"><b> Descrição</b></label>
+                    <input type="text" name="descricao" class="form-control" id="descricao"
+                        value="{{$compra->descricao}}" required>
+                </div>
+
+
+                <div class="form-group">
+                    <label for="valor"><b> Valor da Compra</b></label>
+                    <div class="input-group mb-2">
+                      <div class="input-group-prepend">
+                        <div class="input-group-text">R$</div>
+                      </div>
+                      <input type="number" name="valor" class="form-control" id="valor" value="{{$compra->valor}}" required>
+                    </div>
+                  </div>
+                  
+
+                <div style="float:right; margin-top: 30px">
+                    <a href="/compras" class="btn btn-primary">
                         <ion-icon name="arrow-back-outline"></ion-icon> Voltar
                     </a>
                     <button type="submit" class="btn btn-success">
-                        <ion-icon name="create-outline"></ion-icon>Alterar Cadastro
+                        <ion-icon name="add-circle-outline"></ion-icon>Alterar
                     </button>
                 </div>
             </form>
