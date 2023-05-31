@@ -113,13 +113,13 @@
             <br>
 
             <h1>Compras Clientes</h1>
+            <br>
 
             @if (count($compras) > 0)
                 <div>
                     <table class="table">
                         <thead>
                             <tr>
-                                <th scope="col">#</th>
                                 <th scope="col">Código</th>
                                 <th scope="col">Cliente</th>
                                 <th scope="col">Data</th>
@@ -131,9 +131,8 @@
                         <tbody>
                             @foreach ($compras as $compra)
                                 <tr>
-                                    <td scope="row">{{ $loop->index + 1 }}</td>
                                     <td>{{ $compra->id }}</td>
-                                    <td>{{ $compra->id }}</td>
+                                    <td>{{ $compra->cliente->nome}}</td>
                                     <td>{{ $compra->data_compra }}</td>
                                     <td>{{ $compra->valor }}</td>
                                     <td>

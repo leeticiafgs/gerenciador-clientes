@@ -11,7 +11,7 @@ class CompraController extends Controller
 {
     public function index()
     {
-        $compras = Compra::all();
+        $compras = Compra::with('cliente')->get();
         $clientes = Cliente::all();
         
         return view('compras.index', compact('compras', 'clientes'));

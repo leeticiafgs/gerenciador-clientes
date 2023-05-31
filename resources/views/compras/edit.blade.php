@@ -101,19 +101,26 @@
         <div class="container">
             <br>
 
-            <h1>Editar compra: {{ $compra->id }}</h1>
+            <h1>Editar compra
+            </h1>
             <hr>
+            
+            <div class="form-group">
+                <label for="data_compra"><b> Código:</b></label>
+                <input type="text" value="{{$compra->id}}" class="form-control" disabled>
+                
+            </div>
+            <div class="form-group">
+                <label for="data_compra"><b> Cliente:</b></label>
+                <input type="text" value="{{$compra->cliente->nome}}" class="form-control" disabled>
+                
+            </div>
+
             <form action="/compras/{{ $compra->id }}" method="post">
                 @csrf {{-- Prevenção do laravel de ataques a formularios --}}
                 @method('PUT')
 
                 <input type="hidden" name="cliente_id" value="{{ $cliente->id}}">
-
-                <div class="form-group">
-                    <label for="nome">Nome Completo</label>
-                    <input name="nome" type="nome" class="form-control" id="nome"
-                        value="{{ $cliente->nome}}" disabled>
-                </div>
 
                 <div class="form-group">
                     <label for="data_compra"><b> Data da Compra</b></label>

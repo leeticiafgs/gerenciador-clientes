@@ -22,5 +22,9 @@ class Compra extends Model
         return $this->belongsTo(User::class);
     }
 
-    // Outros métodos e lógica relacionados ao model "Compra"
+    // Relação com a model Cliente
+    public function cliente()
+    {
+        return $this->belongsTo(Cliente::class, 'cliente_id');
+    }
 }
